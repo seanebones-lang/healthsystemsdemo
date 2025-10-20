@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Print styles for PDF documents */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .page-break {
+    page-break-after: always;
+  }
+}
+
+/* Professional medical UI styles */
+.card {
+  @apply bg-white rounded-lg shadow-md border border-gray-200;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors;
+}
+
+.section-title {
+  @apply text-3xl font-bold text-gray-900 mb-6;
+}
+
+.subsection-title {
+  @apply text-2xl font-semibold text-gray-800 mb-4;
+}
+
+/* HIPAA compliance indicators */
+.hipaa-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800;
+}
+
+/* Status indicators */
+.status-active {
+  @apply text-green-600 bg-green-50 px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.status-pending {
+  @apply text-yellow-600 bg-yellow-50 px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.status-cancelled {
+  @apply text-red-600 bg-red-50 px-3 py-1 rounded-full text-sm font-medium;
+}
+
