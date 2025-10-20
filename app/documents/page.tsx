@@ -17,6 +17,7 @@ import Link from 'next/link'
 
 export default function DocumentsPage() {
   const [selectedDoc, setSelectedDoc] = useState<string | null>(null)
+  
 
   const documents = [
     {
@@ -312,28 +313,38 @@ DocBox is a comprehensive, enterprise-grade healthcare management system designe
   ]
 
   const downloadDocument = (docId: string) => {
+    console.log('Download button clicked for:', docId)
     const doc = documents.find(d => d.id === docId)
-    if (!doc) return
+    if (!doc) {
+      console.error('Document not found:', docId)
+      return
+    }
     
-    // Create a blob with the document content
-    const content = `${doc.title}\n\n${doc.preview}\n\n--- End of Document ---`
-    const blob = new Blob([content], { type: 'text/plain' })
-    const url = URL.createObjectURL(blob)
-    
-    // Create download link
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${doc.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
-    
-    // Show success message
-    alert(`✅ Document downloaded: ${doc.title}\n\nNote: In production, this would be a properly formatted PDF file.`)
+    try {
+      // Create a blob with the document content
+      const content = `${doc.title}\n\n${doc.preview}\n\n--- End of Document ---`
+      const blob = new Blob([content], { type: 'text/plain' })
+      const url = URL.createObjectURL(blob)
+      
+      // Create download link
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${doc.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+      
+      // Show success message
+      alert(`✅ Document downloaded: ${doc.title}\n\nNote: In production, this would be a properly formatted PDF file.`)
+    } catch (error) {
+      console.error('Download error:', error)
+      alert('Download failed. Please try again.')
+    }
   }
 
   const viewDocument = (docId: string) => {
+    console.log('View button clicked for:', docId)
     setSelectedDoc(docId)
   }
 
