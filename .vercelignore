@@ -1,0 +1,10 @@
+.vercel
+node_modules
+.git
+.gitignore
+README.md
+.env*
+.vercelignore
+.next
+*.log
+.DS_Store

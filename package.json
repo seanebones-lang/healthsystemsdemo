@@ -10,12 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.0.2",
+    "beasties": "^0.3.5",
+    "date-fns": "^3.6.0",
+    "lucide-react": "^0.445.0",
+    "next": "^15.5.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "lucide-react": "^0.445.0",
-    "recharts": "^2.12.7",
-    "date-fns": "^3.6.0"
+    "recharts": "^2.12.7"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
@@ -27,7 +28,6 @@
     "typescript": "^5.6.2"
   },
   "engines": {
-    "node": "22.x"
+    "node": ">=18.17.0"
   }
 }
-
