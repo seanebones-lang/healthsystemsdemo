@@ -9,7 +9,6 @@
     }
   },
   "regions": ["iad1"],
-  "memory": 1024,
   "maxLambdaSize": "50mb",
   "build": {
     "env": {
