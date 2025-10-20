@@ -2,17 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom component classes */
+@layer components {
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 }
 
+/* Disable dark mode to prevent white text on white background issues */
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
   }
 }
 
@@ -47,18 +63,7 @@ body {
   }
 }
 
-/* Professional medical UI styles */
-.card {
-  @apply bg-white rounded-lg shadow-md border border-gray-200;
-}
-
-.btn-primary {
-  @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors;
-}
-
-.btn-secondary {
-  @apply bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors;
-}
+/* Professional medical UI styles - removed duplicate card definition */
 
 .section-title {
   @apply text-3xl font-bold text-gray-900 mb-6;
