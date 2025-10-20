@@ -28,7 +28,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 export default function MedicalDashboard() {
   const [activeTab, setActiveTab] = useState('overview')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedPatient, setSelectedPatient] = useState(null)
+  const [selectedPatient, setSelectedPatient] = useState<any>(null)
   const [ragQuery, setRagQuery] = useState('')
   const [showRAGResults, setShowRAGResults] = useState(false)
 
@@ -383,7 +383,7 @@ export default function MedicalDashboard() {
                             <label className="text-sm font-medium text-gray-600">Allergies</label>
                             <div className="flex flex-wrap gap-2 mt-1">
                               {selectedPatient.allergies.length > 0 ? (
-                                selectedPatient.allergies.map((allergy, index) => (
+                                selectedPatient.allergies.map((allergy: string, index: number) => (
                                   <span key={index} className="px-2 py-1 bg-red-100 text-red-800 text-sm rounded">
                                     {allergy}
                                   </span>
@@ -397,7 +397,7 @@ export default function MedicalDashboard() {
                             <label className="text-sm font-medium text-gray-600">Conditions</label>
                             <div className="flex flex-wrap gap-2 mt-1">
                               {selectedPatient.conditions.length > 0 ? (
-                                selectedPatient.conditions.map((condition, index) => (
+                                selectedPatient.conditions.map((condition: string, index: number) => (
                                   <span key={index} className="px-2 py-1 bg-yellow-100 text-yellow-800 text-sm rounded">
                                     {condition}
                                   </span>
