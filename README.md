@@ -149,10 +149,16 @@ This demo is perfect for:
 
 ## 📄 Legal Information
 
+**⚠️ PROPRIETARY SOFTWARE - LICENSE REQUIRED FOR EVALUATION**
+
 - **Copyright**: © 2025 Sean McDonnell. All Rights Reserved.
-- **License**: Proprietary Software
+- **License**: Proprietary Software - **NOT OPEN SOURCE**
+- **Status**: **FOR SALE** - Commercial licensing available
+- **Evaluation**: **License required** - Contact for evaluation access
 - **IP Status**: 100% Clean IP with verified ownership
 - **Compliance**: HIPAA compliant architecture
+
+**This software is NOT free to use, modify, or distribute. All rights reserved.**
 
 ## 🔍 Demo Navigation
 

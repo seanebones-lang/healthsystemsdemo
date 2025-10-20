@@ -42,6 +42,25 @@ export default function HomePage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Legal Notice */}
+        <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-8">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <Shield className="h-5 w-5 text-red-400" />
+            </div>
+            <div className="ml-3">
+              <p className="text-sm text-red-700">
+                <strong>PROPRIETARY SOFTWARE:</strong> This is commercial software FOR SALE. 
+                Evaluation requires proper licensing. Contact{' '}
+                <a href="https://www.bizbot.store" className="underline font-medium">
+                  www.bizbot.store
+                </a>{' '}
+                for licensing inquiries.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Hero Section */}
         <div className="text-center py-12">
           <h2 className="text-5xl font-bold text-gray-900 mb-6">
