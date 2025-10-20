@@ -312,9 +312,25 @@ DocBox is a comprehensive, enterprise-grade healthcare management system designe
   ]
 
   const downloadDocument = (docId: string) => {
-    // In a real implementation, this would trigger a PDF download
-    console.log(`Downloading document: ${docId}`)
-    alert(`Document download started: ${documents.find(d => d.id === docId)?.title}`)
+    const doc = documents.find(d => d.id === docId)
+    if (!doc) return
+    
+    // Create a blob with the document content
+    const content = `${doc.title}\n\n${doc.preview}\n\n--- End of Document ---`
+    const blob = new Blob([content], { type: 'text/plain' })
+    const url = URL.createObjectURL(blob)
+    
+    // Create download link
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${doc.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    
+    // Show success message
+    alert(`✅ Document downloaded: ${doc.title}\n\nNote: In production, this would be a properly formatted PDF file.`)
   }
 
   const viewDocument = (docId: string) => {
@@ -385,14 +401,14 @@ DocBox is a comprehensive, enterprise-grade healthcare management system designe
                       <div className="flex space-x-3">
                         <button 
                           onClick={() => viewDocument(doc.id)}
-                          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
                           View Document
                         </button>
                         <button 
                           onClick={() => downloadDocument(doc.id)}
-                          className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                          className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                         >
                           <Download className="w-4 h-4 mr-2" />
                           Download PDF
@@ -468,8 +484,8 @@ DocBox is a comprehensive, enterprise-grade healthcare management system designe
               </button>
               <div className="flex space-x-3">
                 <button 
-                  onClick={() => downloadDocument(selectedDoc)}
-                  className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  onClick={() => selectedDoc && downloadDocument(selectedDoc)}
+                  className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Download PDF
@@ -488,8 +504,10 @@ DocBox is a comprehensive, enterprise-grade healthcare management system designe
               </div>
 
               <div className="prose max-w-none">
-                <div className="bg-gray-50 p-6 rounded-lg font-mono text-sm whitespace-pre-wrap">
-                  {documents.find(d => d.id === selectedDoc)?.preview}
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 max-h-96 overflow-y-auto">
+                  <div className="font-mono text-sm whitespace-pre-wrap text-gray-800 leading-relaxed">
+                    {documents.find(d => d.id === selectedDoc)?.preview}
+                  </div>
                 </div>
               </div>
 
