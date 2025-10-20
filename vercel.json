@@ -9,7 +9,6 @@
     }
   },
   "regions": ["iad1"],
-  "maxLambdaSize": "50mb",
   "build": {
     "env": {
       "NODE_OPTIONS": "--max-old-space-size=4096"
